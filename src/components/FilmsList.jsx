@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchpopular } from '../Fetch/fetchPopular.js';
 
 export const FilmList = () => {
-  const [films, setFilms] = useState([]);
+  const [films, setFilms] = useState('');
 
   useEffect(() => {
     async function extractFetch() {
@@ -11,13 +11,17 @@ export const FilmList = () => {
     }
     extractFetch();
   }, []);
-
   console.log(films);
-  return films.results.map(film => {
-    return (
-      <ul key={film.id}>
-        <li>{film.title}</li>
-      </ul>
-    );
-  });
+
+  if (films) {
+    console.log(films);
+
+    return films.map(film => {
+      return (
+        <ul key={film.id}>
+          <li>{film.title}</li>
+        </ul>
+      );
+    });
+  }
 };
