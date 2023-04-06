@@ -19,7 +19,7 @@ export const FilmList = () => {
     return films.map(film => {
       return (
         <ul key={film.id}>
-          <li>{film.title}</li>
+          {film.title ? <li> {film.title}</li> : <li>{film.name}</li>}
         </ul>
       );
     });
