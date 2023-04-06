@@ -15,8 +15,6 @@ export const FilmList = () => {
   console.log(films);
 
   if (films) {
-    console.log(films);
-
     return films.map(film => {
       return (
         <ul key={film.id}>
