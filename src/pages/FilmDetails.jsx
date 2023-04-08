@@ -2,8 +2,10 @@ import { Link, useParams, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchAllAbout } from '../Fetch/fetchAllAbout';
 import { FilmInfo } from 'components/FilmInfo';
+import { fetchCast } from 'Fetch/fetchCast';
+import { fetchReviews } from 'Fetch/fetchReviews';
 
-export const FilmDetails = () => {
+export const FilmDetails = ({ pr }) => {
   const { movieId } = useParams();
   const [filmData, setFilmData] = useState('');
   useEffect(() => {
@@ -13,15 +15,33 @@ export const FilmDetails = () => {
     }
     extractFetch();
   }, [movieId]);
+
+  function castSearch() {
+    extractFetch(fetchCast(movieId));
+  }
+  function reviewsSearch() {
+    extractFetch(fetchReviews(movieId));
+  }
+
+  async function extractFetch(foo) {
+    const movies = await foo;
+
+    pr(movies);
+  }
+
   return (
     <main>
       {filmData && <FilmInfo filmData={filmData} />}
       <ul>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link onClick={castSearch} to="cast">
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link onClick={reviewsSearch} to="reviews">
+            Reviews
+          </Link>
         </li>
       </ul>
       <Outlet />

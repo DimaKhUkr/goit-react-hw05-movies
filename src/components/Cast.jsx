@@ -1,7 +1,24 @@
-export const Cast = () => {
+export const Cast = ({ cast }) => {
+  console.log(cast);
   return (
     <main>
-      <h1>V rolyah</h1>
+      <h1>Casts</h1>
+      {cast.map(c => {
+        return (
+          <div key={c.id}>
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/w400${c.profile_path}`}
+                alt={`Sorry img of film "${c.name}" not found`}
+              />
+            </div>
+            <div>
+              <p>{c.name}</p>
+              <p>{c.character}</p>
+            </div>
+          </div>
+        );
+      })}
     </main>
   );
 };

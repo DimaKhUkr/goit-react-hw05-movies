@@ -1,13 +1,6 @@
 export const FilmInfo = ({ filmData }) => {
-  console.log(filmData);
-  const {
-    poster_path,
-    vote_average,
-    original_title,
-    release_date,
-    genres,
-    overview,
-  } = filmData;
+  const { poster_path, vote_average, title, release_date, genres, overview } =
+    filmData;
   const normDate = new Date(release_date).getFullYear();
   const genresList = genres.map(g => g.name).join(', ');
   return (
@@ -15,11 +8,11 @@ export const FilmInfo = ({ filmData }) => {
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w400${poster_path}`}
-          alt={`Sorry img of film "${original_title}" not found`}
+          alt={`Sorry img of film "${title}" not found`}
         />
       </div>
       <div>
-        <h1>{`${original_title}(${normDate})`}</h1>
+        <h1>{`${title}(${normDate})`}</h1>
         <p>{`User Score : ${Math.round(vote_average * 10)}%`}</p>
         <h2>Overview</h2>
         <p>{overview}</p>
