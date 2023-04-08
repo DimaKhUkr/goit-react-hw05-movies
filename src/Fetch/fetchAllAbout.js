@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-const API_KEY = 'edf9b0cc9ad38910cb90dc25085b494b ghgfh';
+const API_KEY = 'edf9b0cc9ad38910cb90dc25085b494b';
 
 export async function fetchAllAbout(movieId) {
   const searchParams = new URLSearchParams({

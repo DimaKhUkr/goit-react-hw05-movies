@@ -7,15 +7,12 @@ export const FilmDetails = () => {
   const { movieId } = useParams();
   const [filmData, setFilmData] = useState('');
   useEffect(() => {
-    if (!filmData) {
-      console.log('Рендер');
-      async function extractFetch() {
-        const movieInfo = await fetchAllAbout(movieId);
-        setFilmData(movieInfo);
-      }
-      extractFetch();
+    async function extractFetch() {
+      const movieInfo = await fetchAllAbout(movieId);
+      setFilmData(movieInfo);
     }
-  }, []);
+    extractFetch();
+  }, [movieId]);
   return (
     <main>
       {filmData && <FilmInfo filmData={filmData} />}
