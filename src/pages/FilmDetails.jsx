@@ -1,15 +1,24 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, useParams, Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchAllAbout } from '../Fetch/fetchAllAbout';
+import { FilmInfo } from 'components/FilmInfo';
 
 export const FilmDetails = () => {
+  const { movieId } = useParams();
+  const [filmData, setFilmData] = useState('');
+  useEffect(() => {
+    if (!filmData) {
+      console.log('Рендер');
+      async function extractFetch() {
+        const movieInfo = await fetchAllAbout(movieId);
+        setFilmData(movieInfo);
+      }
+      extractFetch();
+    }
+  }, []);
   return (
     <main>
-      <h1>Pro kinco</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        laboriosam placeat incidunt rem illum animi nemo quibusdam quia
-        voluptatum voluptate.
-      </p>
-      <h2>Additional Info</h2>
+      {filmData && <FilmInfo filmData={filmData} />}
       <ul>
         <li>
           <Link to="cast">Cast</Link>

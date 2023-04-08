@@ -6,6 +6,9 @@ import { Movies } from 'pages/Movies';
 import { FilmDetails } from 'pages/FilmDetails';
 import { Reviews } from './Reviews';
 import { Cast } from './Cast';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const App = () => {
   return (
     <div>
@@ -20,6 +23,7 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 };
