@@ -13,11 +13,14 @@ export const FilmInfo = ({ filmData }) => {
   return (
     <div>
       <div>
-        <img src={`https://image.tmdb.org/t/p/w400${poster_path}`} alt="" />
+        <img
+          src={`https://image.tmdb.org/t/p/w400${poster_path}`}
+          alt={`Sorry img of film "${original_title}" not found`}
+        />
       </div>
       <div>
         <h1>{`${original_title}(${normDate})`}</h1>
-        <p>{`User Score : ${vote_average * 10}%`}</p>
+        <p>{`User Score : ${Math.round(vote_average * 10)}%`}</p>
         <h2>Overview</h2>
         <p>{overview}</p>
         <h3>Genres</h3>
