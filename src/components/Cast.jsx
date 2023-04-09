@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Cast = ({ cast }) => {
   return (
     <main>
@@ -23,3 +25,12 @@ const Cast = ({ cast }) => {
 };
 
 export default Cast;
+Cast.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      profile_path: PropTypes.string,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+};

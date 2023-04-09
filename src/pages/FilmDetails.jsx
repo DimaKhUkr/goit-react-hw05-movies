@@ -5,19 +5,21 @@ import { FilmInfo } from 'components/FilmInfo';
 import { fetchCast } from 'Fetch/fetchCast';
 import { fetchReviews } from 'Fetch/fetchReviews';
 import { Suspense } from 'react';
+import PropTypes from 'prop-types';
 
 const FilmDetails = ({ pr }) => {
   const location = useLocation();
 
   const { movieId } = useParams();
   const [filmData, setFilmData] = useState('');
+
   useEffect(() => {
     async function extractFetch() {
       const movieInfo = await fetchAllAbout(movieId);
       setFilmData(movieInfo);
     }
     extractFetch();
-  }, [movieId]);
+  }, [movieId, filmData]);
 
   function castSearch() {
     extractFetch(fetchCast(movieId));
@@ -55,3 +57,7 @@ const FilmDetails = ({ pr }) => {
 };
 
 export default FilmDetails;
+
+FilmDetails.propTypes = {
+  pr: PropTypes.func.isRequired,
+};

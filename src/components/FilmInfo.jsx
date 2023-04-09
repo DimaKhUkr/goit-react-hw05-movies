@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { BackLink } from './BackLink';
+import PropTypes from 'prop-types';
 
 export const FilmInfo = ({ filmData }) => {
   const { poster_path, vote_average, title, release_date, genres, overview } =
@@ -28,4 +29,15 @@ export const FilmInfo = ({ filmData }) => {
       </div>
     </div>
   );
+};
+
+FilmInfo.propTypes = {
+  films: PropTypes.shape({
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    genres: PropTypes.string,
+    overview: PropTypes.string,
+  }),
 };
