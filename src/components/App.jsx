@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { Header } from './Header';
-import { useState } from 'react';
-import { Home } from 'pages/Home';
-import { NotFound } from 'pages/NotFound';
-import { Movies } from 'pages/Movies';
-import { FilmDetails } from 'pages/FilmDetails';
-import { Reviews } from './Reviews';
-import { Cast } from './Cast';
+import { useState, lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const Movies = lazy(() => import('../pages/Movies'));
+const Home = lazy(() => import('../pages/Home'));
+const FilmDetails = lazy(() => import('../pages/FilmDetails'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+const Reviews = lazy(() => import('./Reviews'));
+const Cast = lazy(() => import('./Cast'));
 
 export const App = () => {
   const [cast, setCast] = useState('');
@@ -16,6 +17,7 @@ export const App = () => {
 
   function pr(data) {
     if (data?.cast) {
+      data.cast.splice(10);
       return setCast(data.cast);
     }
     return setReviews(data.results);

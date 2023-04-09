@@ -1,11 +1,14 @@
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchAllAbout } from '../Fetch/fetchAllAbout';
 import { FilmInfo } from 'components/FilmInfo';
 import { fetchCast } from 'Fetch/fetchCast';
 import { fetchReviews } from 'Fetch/fetchReviews';
+import { Suspense } from 'react';
 
-export const FilmDetails = ({ pr }) => {
+const FilmDetails = ({ pr }) => {
+  const location = useLocation();
+
   const { movieId } = useParams();
   const [filmData, setFilmData] = useState('');
   useEffect(() => {
@@ -34,17 +37,21 @@ export const FilmDetails = ({ pr }) => {
       {filmData && <FilmInfo filmData={filmData} />}
       <ul>
         <li>
-          <Link onClick={castSearch} to="cast">
+          <Link onClick={castSearch} to="cast" state={location.state}>
             Cast
           </Link>
         </li>
         <li>
-          <Link onClick={reviewsSearch} to="reviews">
+          <Link onClick={reviewsSearch} to="reviews" state={location.state}>
             Reviews
           </Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };
+
+export default FilmDetails;

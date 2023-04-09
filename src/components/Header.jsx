@@ -1,4 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
+import { Suspense } from 'react';
 
 export const Header = () => {
   return (
@@ -15,7 +16,9 @@ export const Header = () => {
           </ul>
         </nav>
       </header>
-      <Outlet />
+      <Suspense fallback={<div>Loading page...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

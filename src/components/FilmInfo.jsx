@@ -1,10 +1,17 @@
+import { useLocation } from 'react-router-dom';
+import { BackLink } from './BackLink';
+
 export const FilmInfo = ({ filmData }) => {
   const { poster_path, vote_average, title, release_date, genres, overview } =
     filmData;
   const normDate = new Date(release_date).getFullYear();
   const genresList = genres.map(g => g.name).join(', ');
+
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
   return (
     <div>
+      <BackLink to={backLinkHref}>Back to movies</BackLink>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w400${poster_path}`}

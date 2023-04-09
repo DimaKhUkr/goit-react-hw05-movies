@@ -1,4 +1,4 @@
-export const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews }) => {
   return (
     <main>
       <h1>REVO</h1>
@@ -13,3 +13,5 @@ export const Reviews = ({ reviews }) => {
     </main>
   );
 };
+
+export default Reviews;

@@ -1,5 +1,4 @@
-export const Cast = ({ cast }) => {
-  console.log(cast);
+const Cast = ({ cast }) => {
   return (
     <main>
       <h1>Casts</h1>
@@ -22,3 +21,5 @@ export const Cast = ({ cast }) => {
     </main>
   );
 };
+
+export default Cast;

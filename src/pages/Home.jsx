@@ -2,7 +2,7 @@ import { FilmList } from 'components/FilmsList';
 import { fetchpopular } from '../Fetch/fetchPopular.js';
 import { useState, useEffect } from 'react';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState('');
   useEffect(() => {
     async function extractFetch() {
@@ -19,3 +19,6 @@ export const Home = () => {
     </main>
   );
 };
+
+
+export default Home;
