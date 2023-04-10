@@ -19,7 +19,7 @@ const FilmDetails = ({ pr }) => {
       setFilmData(movieInfo);
     }
     extractFetch();
-  }, [movieId, filmData]);
+  }, [movieId]);
 
   function castSearch() {
     extractFetch(fetchCast(movieId));
